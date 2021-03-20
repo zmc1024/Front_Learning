@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--  事件流程(事件模型)：捕获阶段  目标阶段(点的谁触发谁的事件)   冒泡阶段 -->
+  <div id="id2">
+    2
+    <div id="id1">1</div>
+  </div>
+
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+
+  <script>
+    // let lis = document.querySelectorAll('li')
+    // lis.forEach(ele => {
+    //   ele.addEventListener('click',()=>{
+    //     console.log(ele.textContent);
+    //   })
+    // })
+    // 冒泡应用：
+    let ul = document.querySelector('ul')
+    ul.addEventListener('click',(event)=>{
+      console.log(event.target.textContent);  //event.target：目标阶段
+      // console.log('ul...li');
+    })
+
+
+    const id1 = document.getElementById('id1');
+    const id2 = document.getElementById('id2');
+
+    // 第三个参数：默认是false(事件处于冒泡阶段 由内到外)，为true(处于捕获阶段 由外到里)
+    id1.addEventListener('click',()=>{
+      console.log('id1');
+    },true)
+    id2.addEventListener('click',()=>{
+      console.log('id2');
+    },true)
+    id1.addEventListener('click',()=>{
+      console.log('id1');
+    },false)
+    id2.addEventListener('click',()=>{
+      console.log('id2');
+    },false)
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<script>
+  // 组合继承：融合了原型链和构造函数继承的优点，是JS中最常用的继承模式
+    // 缺点：无论在什么情况下，都会调用两次Parent函数
+  function Parent(name) {
+    this.name = name
+    this.colors = ['red', 'bile', 'green']
+  }
+
+  function Child(name, age) {
+    this.age = age
+    Parent.call(this, name)   //1次
+  }
+  Child.prototype = new Parent()  //2次
+
+  let child1 = new Child('jiushen', '18')
+  child1.colors.push('yellow')
+  console.log(child1.name);    
+  console.log(child1.age);    
+  console.log(child1.colors);    
+
+  let child2 = new Child('ceo', '20')
+  console.log(child2.name);    
+  console.log(child2.age);    
+  console.log(child2.colors);   
+</script>

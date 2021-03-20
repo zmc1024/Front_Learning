@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>input输入值实时更新span</title>
+</head>
+<body>
+  <div id="app">
+    <!-- input:行内块级 span:行内 -->
+    <input type="text" id="input" />
+    <span id="span">hello</span>
+  </div>
+
+  <script>
+    const data = {
+      _text: 'hello world'
+    }
+    const input = document.getElementById('input')
+    const span = document.getElementById('span')
+    
+    /*
+    // 内置api都有监听参数
+    input.addEventListener('change',(e)=>{
+      // console.log(e);
+      span.innerHTML = e.target.value
+    })*/
+    
+    /*
+      数据劫持：
+        第一个参数：要劫持的对象，
+        第二个参数：劫持对象的内容，
+        第三个参数：劫持后要干什么
+    */
+    Object.defineProperty(data, 'text', {
+      get(){    // 内置方法，获取值
+        // console.log('hello world');
+        return data._text
+      },
+      set(newVal, oldVal){    // 内置方法，设置值
+        console.log(newVal);
+        span.innerHTML = newVal
+      }
+    })
+    // data.text = 'www'
+    input.addEventListener('keyup',(e)=>{   //keyup:鼠标按下并放开
+      data._text = e.target.value;
+      // console.log(data.text);
+    })
+  </script>
+</body>
+</html>

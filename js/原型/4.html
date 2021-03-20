@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        Person.prototype.name = 'wn'
+        // new 构造函数的三部曲
+        function Person() {
+            // this.name = name
+            // var this = {
+            //     name: 'wn'
+            //     __proto__: Person.prototype
+            // }
+            // return this  
+        }
+        var person = new Person()
+        // console.log(person.__proto__);
+
+        // var test = {}
+
+
+        // var obj = new Object()
+        var obj = {
+            name: '蜗牛'
+        }
+        // console.log(obj.__proto__);
+        person.__proto__ = obj
+        console.log(person.name);
+        // __proto__ 指向谁，就上谁那里找属性
+
+    </script> -->
+    <script>
+        // 深浅拷贝
+        // var a = 1
+        // var b = a
+        // a = 2
+
+        Person.prototype = null
+        function Person() {
+
+        }
+        var person = new Person()
+        //修改原型的属性
+        // Person.prototype.name = '蜗牛' // 浅拷贝
+        //给原型添加了一个name属性，和原始原型无关
+        Person.prototype = {  // 深拷贝
+            name: '蜗牛'
+        }
+        console.log(person.name);
+    </script>
+</body>
+
+</html>

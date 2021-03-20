@@ -1,0 +1,209 @@
+*{
+    padding: 0;
+    margin: 0;
+    /* line-height: 1; */
+}
+.page{
+    width: 100%;
+    min-width: 1200px;
+}
+.banner{
+    width: 100%;
+    height: 813px;
+    background: url('./image/section1-bg.png') no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+.title{
+    width: 708px;
+    font-size: 60px;
+    font-weight: 100;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 220px;
+}
+.video{
+    text-align: center;
+    margin-top: 40px;
+}
+.play{
+    text-align: center;
+}
+.play button{
+    width: 190px;
+    height: 50px;
+    background-color: #ff6d6d;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+    margin-top: 40px;
+}
+.desc{
+    margin-top: 18px;
+}
+.desc p{
+    text-align: center;
+}
+@media screen and (max-width: 1300px) { /*小于等于1300px应用此样式*/
+    .title{
+        font-size: 40px;
+    }
+}
+
+@media screen and (min-width: 1900px) { /*大于等于19 00px应用此样式*/
+    .banner{
+        width: 100%;
+    }
+}
+.body-one{
+    width: 100%;
+    display: flex;
+}
+.body-one_left{
+    flex: 872;
+    margin: 0 auto;
+}
+.body-one_right{
+    flex: 568;
+}
+.body-one_content{
+    width: 571px;
+	height: 367px;
+    margin: 0 auto;
+    padding-top: 191px;
+}
+.content-header{
+    font-family: Exo-Medium;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 50px;
+    letter-spacing: 3px;
+    color: #ff6d6d;
+}
+.content-title{
+    width: 532px;
+    height: 93px;
+    padding-top: 16px;
+    text-align: left;
+	font-family: Exo-Medium;
+	font-size: 35px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 50px;
+	letter-spacing: 2px;
+	color: #282828;
+}
+.point{
+    font-family: Exo-Medium;
+    font-size: 35px;
+    font-weight: normal;
+	font-stretch: normal;
+    letter-spacing: 2px;
+    color: #ff6d6d;
+}
+.content-desc{
+    width: 571px;
+	height: 200px;
+	margin-top: 45px;
+}
+.content-desc_item{
+    font-family: Exo-Medium;
+	font-size: 12px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 20px;
+	letter-spacing: 1px;
+	color: #282828;
+	opacity: 0.66;
+}
+p.bottom{
+    padding-top: 15px;
+}
+.body-one_right{
+    width: 568px;
+	height: 724px;
+	background-color: #ededed;
+}
+.body-two{
+    width: 100%;
+    height: 675px;
+    background-color: #f6f5f3;
+    background: url('./image/pen-holder.png') no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+.body-two_earphones{
+    width: 162px;
+    height: 200px;
+    position: absolute;
+    display: inline-block;
+    margin-left: 1114px;
+    background-color: #f6f5f3;
+}
+.body-two_text{
+    width: 1120px;
+    height: 353px;
+    margin: 0 auto;
+    padding-top: 138px;
+}
+.body-two_container1{
+    width: 459px;
+    height: 60px;
+    margin: 0 auto;
+}
+p.container1-header{
+    font-family: Exo-Medium;
+	font-size: 8px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 3px;
+    color: #ff6d6d;
+    text-align: center;
+}
+p.container1-title{
+    font-family: Exo-Medium;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 2px;
+    color: #282828;
+    text-align: center;
+    padding-top: 15px;
+}
+.photo, .plane, .bulb{
+    width: 65px;
+    height: 65px;
+    margin: 0 auto;
+}
+.body-two_container2{
+    display: flex;
+    margin-top: 91px;
+}
+.body-text_middle{
+    float: 1;
+    text-align: center;
+}
+.body-text_middle_title{
+    margin: 0 auto;
+    font-family: Exo-Medium;
+	font-size: 22px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 50px;
+	letter-spacing: 1px;
+    color: #282828;
+    padding-top: 30px;
+}
+.body-text_middle_content{
+    text-align: left;
+    font-family: Exo-Medium;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 26px;
+	letter-spacing: 1px;
+	color: #282828;
+    opacity: 0.66;
+    padding-top: 19px;
+}

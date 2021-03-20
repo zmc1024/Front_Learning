@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .wrap{
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    alloyFinger：有名手势库
+    长按 点击(click)   滑动  
+        长按：计时器  离开：mouseUp/mouseleave
+        移动click有延迟，300ms  他需要延迟一会看是双击还是单击事件
+  -->
+  <div class="wrap"></div>
+  <a href="www.baidu.com">百度一下</a>
+
+  <script>
+    // 标准：click  touchstart  touchmove   touchend
+    // 事件流程(事件模型)：捕获阶段  目标阶段   冒泡阶段
+    const wrap = document.querySelector('.wrap');
+
+    // 自定义事件
+    wrap.addEventListener('press',()=>{
+      console.log('收到press事件了');
+    })
+    wrap.addEventListener('panleft',()=>{
+      
+    })
+
+
+    // 长按
+    let timeout = null;
+    function start(){
+      timeout = setTimeout(()=>{
+        console.log('press 发生了');
+        let e = new CustomEvent('press')  // 自定义事件的api
+        wrap.dispatchEvent(e);    // 谁触发事件，wrap
+      },500)
+    }
+    // touchstart：按一下，无延迟
+    // 移动端默认的事件触发的顺序：touchstart -> move -> end -> click
+    let startX=0,startY=0;
+    wrap.addEventListener('touchstart',(event)=>{
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+      // console.log('tap 发生了');
+      start();
+      event.preventDefault();    // 阻止默认事件
+    })
+    wrap.addEventListener('click',()=>{
+      console.log('click 发生了');
+    })
+
+
+    // 滑动：
+    wrap.addEventListener('touchmove',(event)=>{
+      let diffX = event.touches[0].clientX - startX;
+      let diffY = event.touches[0].clientY - startY;
+      if(Math.abs(diffX) > Math.abs(diffY)){
+        if(diffX ** 2 + diffY ** 2 > 100){
+          return;
+        }
+        if(diffX > 0){
+          console.log('右滑动');
+        }else{
+          console.log('左滑动');
+        }
+      }
+    })  
+    function end(){
+      clearTimeout(timeout);
+    }
+    wrap.addEventListener('touchend',()=>{
+      end();
+    })
+
+
+    // 可多次绑定
+    document.querySelector('a').addEventListener('click',(event)=>{
+      // 阻止默认事件
+      // event.preventDefault();
+      // 阻止剩余事件
+      // event.stopImmediatePropagation();
+    })
+    document.querySelector('a').addEventListener('click',()=>{
+      console.log('xxxxxxxxxxx');
+    })
+  </script>
+</body>
+</html>

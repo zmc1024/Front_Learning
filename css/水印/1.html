@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>明水印</title>
+  <style>
+    #watermark{
+      position: fixed;    /*固定定位：相对于浏览器定位*/
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-wrap: wrap;
+      z-index: -1;
+    }
+    .item{
+      position: relative;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .text{
+      position: absolute;   /*相对于它的包含块定位*/
+      transform: rotate(-45deg);   /*旋转*/
+      opacity: 0.1;
+    }
+    #button{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="button">
+    按钮
+  </div>
+  <div id="watermark">
+    <div class="item">
+      <div class="text">001</div>
+    </div>
+    <div class="item">
+      <div class="text">001</div>
+    </div>
+    <div class="item">
+      <div class="text">001</div>
+    </div>
+  </div>
+
+  <script>
+    const button = document.getElementById('button')
+    const wm = document.getElementById('watermark')
+    button.addEventListener('click', ()=> {
+      console.log(1);
+    })
+
+    // MutationObserver 变动观察者
+    // DOM结构的变更是可以观察到的
+    const obverse = new MutationObserver(callBack)
+    function callBack(list) {     //...变更或删除会在list中
+      console.log(list);
+      list.forEach(x => {
+        if(x.type === 'childList' && x.removedNodes.length && x.removedNodes[0] === wm){
+          document.body.appendChild(wm)     //添加元素
+        }
+      });
+    }
+    obverse.observe(document.body, {   //观察到某个元素的子节点 或 ...属性
+      childList: true,
+      attributes: true
+    })
+  </script>
+</body>
+</html>

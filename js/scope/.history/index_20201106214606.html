@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <script>
+    // eval() 欺骗词法作用域
+    function too(str,a){
+      eval(str)
+      console.log(a,b);
+    }
+    var b = 2;
+    too('var b = 3',1)
+  </script> -->
+
+  <!-- <script>
+    /*
+    with：
+      var obj = {
+        a: 1,
+        b: 2,
+        c: 3
+      }
+      with(obj){
+        a = 3,
+        b = 4,
+        c = 5
+      }
+      console.log(obj);
+    */
+
+    function too(obj){
+      with(obj){    // obj.a = 2
+        a = 2
+      }
+    }
+    var o1 = {
+      a: 3
+    }
+    var o2 = {
+      b: 3
+    }
+    too(o1)
+    too(o2)
+    console.log(o2.a);  //undefined
+    console.log(a);
+
+  </script> -->
+
+  <script>
+    function foo(a){
+      var b = 2
+
+      return function bar(){
+        console.log(4);
+      }
+
+      var c = 3
+    }
+    foo()()
+
+  </script>
+
+</body>
+</html>

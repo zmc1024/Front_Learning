@@ -1,0 +1,23 @@
+<script>
+  // 原型式继承：
+  function createObj(o) {
+    function F() {}
+    F.prototype = o
+    return new F()
+  }
+
+  let person = {
+    name: 'jiushen',
+    friends: ['ceo', 'cong']
+  }
+  let person1 = createObj(person)
+  let person2 = createObj(person)
+  
+  person1.name = 'zhou'   //往对象里添加属性
+  console.log(person1);
+  console.log(person2.name);
+
+  // 和原型链继承存在一样的问题，引用类型存在堆内存中
+  person1.friends.push('yao')   //添加引用属性时，往原型上添加属性
+  console.log(person2.friends);
+</script>

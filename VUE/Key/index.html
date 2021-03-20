@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <!-- 随机数做key值更加不可以：生成虚拟dom节点的key跟原先的不一样，会执行remove再执行appendChidren -->
+      <!-- <li v-for="(item, index) in list" :key="Math.random()">{{item}}</li> -->
+
+      <!-- 用 index 做key，val 变化后 key(数组下标) 不会改变，那些节点就要重新变动，浪费性能 -->
+      <!-- <li v-for="(item, index) in list" :key="index">{{item}}</li> -->
+
+      <li v-for="(item, index) in list" :key="item.id">{{item.num}}</li>
+    </ul>
+    <button @click='change'>改变</button>
+  </div>
+</body>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        // list: [1, 2, 3]
+        list: [
+          {
+            id: 'a1',
+            num: 1
+          },
+          {
+            id: 'b2',
+            num: 2
+          },
+          {
+            id: 'c3',
+            num: 3
+          },
+        ]
+      }
+    },
+    methods: {
+      change() {
+        this.list.reverse()
+      }
+    },
+  })
+
+  // 用 index 做key，val 变化后 key(数组下标) 不会改变，那些节点就要重新变动，浪费性能
+  children: [
+  {
+    tag: 'li',
+    key: 0,
+    props: {
+      val: 1
+    }
+  },
+  {
+    tag: 'li',
+    key: 1,
+    props: {
+      val: 2
+    }
+  },
+  {
+    tag: 'li',
+    key: 2,
+    props: {
+      val: 3
+    }
+  },
+]
+
+  // 用唯一标识做key
+  children: [
+  {
+    tag: 'li',
+    key: 'a1',
+    props: {
+      val: 1
+    }
+  },
+  {
+    tag: 'li',
+    key: 'b2',
+    props: {
+      val: 2
+    }
+  },
+  {
+    tag: 'li',
+    key: 'c3',
+    props: {
+      val: 3
+    }
+  },
+]
+</script>
+</html>

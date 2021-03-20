@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.common.dev.js"></script>
+  <title>vue指令</title>
+  <style>
+    [v-clock] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      v-if 和 v-show 的异别：
+        同：都会对值进行判断 true/false
+        v-if：会直接去掉不加载的dom结构
+        v-show：不加载是用css的displace:none    （需要频繁加载dom结构时使用，开销小性能好）
+    -->
+    <!-- <div v-if="!isLogin">
+      {{msg}}
+    </div>
+    <div v-else>
+      {{msg2}}
+    </div> -->
+    <!-- <div v-show="!isLogin">
+      {{msg}}
+    </div> -->
+
+    <!-- <ul class="news">
+      <li class="item" v-for="(item, index) in news" :key="index">{{item.title}}</li>
+    </ul> -->
+
+    <!-- 
+      v-html：能解析html标签，但不安全容易遭到跨站攻击 
+      {{}} 和 v-text：{{}}网不够快没加载出来会只有{{}}，闪动
+    -->
+    <span>{{msg}}</span> - <span v-text = "msg3"></span> - <span v-html="msg3"></span>
+
+    <!-- <div class="count">
+      本次得分：{{count}}
+
+      <button @click="add">加分</button>
+      <button v-on:click="reduce">减分</button>
+    </div> -->
+
+    <!-- <div class="message">
+      <p>文本内容：{{message}}</p>
+      <p>
+        <input type="text" v-model="message" />    v-model：双向数据绑定的标签 
+      </p>
+    </div> -->
+
+    <!-- <div :class="className">
+      <img v-bind:src="imgUrl" />     v-bind：动态修改样式属性
+    </div> -->
+
+    <!-- <div v-pre>{{msg}}</div>    v-pre：跳过模板编译，展示原始值 -->
+
+    <!-- <div v-clock>{{msg}}</div>    v-clock：需和css样式一起使用，在vue渲染完指定的dom结构之后再进行展示 -->
+
+    <!-- <div>
+      <p v-once>第一次绑定的值：{{message}}</p>     v-once：只绑定第一次渲染的值
+      <input type="text" v-model="message" />
+    </div> -->
+  </div>
+
+  <script>
+    // let dom = document.getElementById('app');
+    // dom.innerHTML = '你好';
+    
+    // Vue语法：  vue是一个单页应用
+    let app = new Vue({
+      el: '#app',       //element:元素
+      data: {     //vue 1.0写法
+        msg: 'hello world!!!',
+        msg2: '你好哇',
+        msg3: '<h2>hi vue</h2>',
+        isLogin: true,
+        news: [
+          { title: '"空降"不到一周 韩俊任吉林代省长 曾是刘鹤"副手"'},
+          { title: '上门女婿成村霸，敲诈勒索故意纵火还打伤司法人员'},
+          { title: 'X光显示肚子内有异物 港媒:黄之锋被关医院单人囚室'},
+          { title: '特朗普突然出手，举行了史上最短一次记者会！'}
+        ],
+        count: 0,
+        message: 'abc',
+        className: 'img',
+        imgUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3851557468,4245104015&fm=26&gp=0.jpg'
+      },
+
+      methods: {
+        add() {
+          this.count++
+        },
+        reduce() {
+          if(this.count === 0){
+            return
+          }else{
+            this.count--
+          }
+        }
+      }
+
+      // created() {       //函数体，es6简写
+      //   this.msg = 'hello vue'
+      // }
+    })
+  </script>
+</body>
+</html>
